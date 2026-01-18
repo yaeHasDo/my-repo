@@ -1,0 +1,13 @@
+name: Test                    # ワークフロー名
+on:
+  pull_request:                   # イベント名 プルリクエストを作成したとき
+   paths: ['go/**/*.go']          # Goファイル変更時のみ
+jobs:                             # ジョブの定義（ワークフローの実行単位）　ジョブも複数定義できる
+  test:                          # ジョブID
+    runs-on: ubuntu-latest        # ランナー Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                        # ワークフローに置ける最小単位
+      - uses: actions/checkout@v4                 # チェックアウト
+      - uses: actions/setup-go@v5                 # 言語のセットアップ
+        with:
+          go-version: '1.22'
+      - run: go test go/excellent/*.go # goの実行コマンド
