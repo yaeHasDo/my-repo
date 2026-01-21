@@ -1,0 +1,14 @@
+name: Timeout             # ワークフロー名
+on:
+  push:                   # イベント名 プルリクエストを作成したとき
+    paths: ['.github/workflows/*.yml', '.github/workflows/*.yaml']
+jobs:
+  sleep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1      # タイムアウトする時間を1分に設定
+    steps:
+      - run: sleep 120
+
+# すべてのワーフローにタイムアウトを設定するべき
+#　Git hub Actionsのデフォルトのタイムアウト時間は6時間
+## あまりにも長すぎるし、使用時間として計上されるからアッというまに無料枠を食いつぶしてしまう
