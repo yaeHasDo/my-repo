@@ -1,0 +1,20 @@
+name: Change shell        # ワークフロー名
+on:
+  push:
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1      # タイムアウトする時間を1分に設定
+    steps:
+      - shell: bash
+        run: echo "${SHELL}"
+      - shell: python
+        run: |
+          import os
+          print(os.environ['PATH'])
+
+# 起動シェルをステップごとに変更できる
+## > 一つのワークフローの中で複数のシェルを切り替えて実行することできる
+
+## シェルがパイソンって不思議な感じ
+### bashの代わりにpythonで実行している　ランナー（Ubuntu・windows・macos）すべてこれで実行している
