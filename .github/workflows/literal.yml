@@ -11,7 +11,7 @@ jobs:
     steps:                                # ワークフローに置ける最小単位
       - run: printenv | grep 'LITERAL_'   # 全ての環境変数を出力
         env:
-          LITERAL_NULL: ${{ null }}
+#          LITERAL_NULL: ${{ null }}
           LITERAL_BOOLEAN: ${{ true }}
           LITERAL_NUMBER: ${{ 10040 }}
           LITERAL_STRING: ${{ 'aiueo' }}

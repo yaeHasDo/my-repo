@@ -1,0 +1,18 @@
+name: Concurrency        # ワークフロー名
+on:
+  push:
+concurrency: ${{ github.workflow }} #Concurrencyグループへのワークフロー名を指定
+jobs:
+  sleep:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 120
+#
+
+# ワークフローの同時実行によって問題になる場合を制御
+## GithubAcitonsはイベント駆動
+## ワークフロー実行中にもう一度イベントが発生すれば、同時に2つのワークフローが実行される状態になる
+## ワークフローの同時実行によって不整合が発生する場合にConcurrencyグループを使用する
+
+# Concurrencyグループの値が同じワークフローは同一グループとみなされる
+# 同一のグループは同時起動が抑制される
